@@ -1,0 +1,12 @@
+{
+  "name": "ashh-the-information",
+  "version": "1.0.0",
+  "description": "A curated research portal of official primary sources across Government, Education, Economy, Election, Judiciary, Health, International Affairs, Reports, Think Tanks, Data and Research.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -l 5173",
+    "start": "npx serve ."
+  },
+  "author": "Ashish Yadav",
+  "license": "UNLICENSED"
+}
