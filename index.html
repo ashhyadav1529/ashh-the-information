@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASHH — The Information | Primary Source Research Portal</title>
+<meta name="description" content="A curated research hub of official government, judicial, and international primary sources across Education, Politics, Economy, Judiciary, Elections, Health, and International Affairs.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<header>
+  <div class="header-inner">
+    <div class="brand" onclick="navigate('home')">
+      <span class="brand-mark">ASHH <span>THE INFORMATION</span></span>
+      <span class="brand-sub">BY ASHH YADAV</span>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" id="searchInput" placeholder="Search sources, categories, reports…" autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="notifBtn" title="Notifications" onclick="navigate('home');document.getElementById('notifRail').scrollIntoView({behavior:'smooth'})">🔔<span class="badge-dot"></span></button>
+      <button class="icon-btn" title="Bookmarks" onclick="navigate('bookmarks')">🔖</button>
+      <button class="icon-btn" title="Notes" onclick="navigate('notes')">📝</button>
+      <button class="login-btn" onclick="showLoginNote()">Sign in</button>
+    </div>
+  </div>
+  <nav class="pillrow" id="pillRow"></nav>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <div class="view active" id="view-home">
+    <section class="hero">
+      <div class="eyebrow hero-eyebrow">RESEARCH OPERATING SYSTEM</div>
+      <h1>Every primary source, <em>in one place.</em></h1>
+      <p>No media commentary, no aggregated takes — only official government portals, courts, statutory bodies, international organisations and peer-reviewed journals, organised for daily research.</p>
+      <div class="hero-stats">
+        <div class="hstat"><b id="statSources">0</b><span>Primary sources</span></div>
+        <div class="hstat"><b>10</b><span>Categories</span></div>
+        <div class="hstat"><b id="statBookmarks">0</b><span>Your bookmarks</span></div>
+      </div>
+    </section>
+
+    <div class="section-head"><h2>Categories</h2></div>
+    <div class="cat-grid" id="catGrid"></div>
+
+    <div class="section-head" id="notifRail"><h2>Notifications</h2><span class="count">Sample feed</span></div>
+    <div class="notif-rail" id="notifList"></div>
+    <div class="notif-note">This feed is illustrative. Turning it into a live feed — a new CAG report landing, a fresh Supreme Court judgment, an RBI policy release — needs a backend that polls each source and pushes updates, which sits outside what a static page can do on its own. Wire it up later with a small scraper + database once you're ready to host this properly.</div>
+  </div>
+
+  <!-- CATEGORY (template rendered by JS) -->
+  <div class="view" id="view-category">
+    <div class="cat-header"><span class="glyph" id="catGlyph"></span><h1 id="catTitle"></h1></div>
+    <p class="cat-desc" id="catDesc"></p>
+    <div class="source-grid" id="catSources"></div>
+  </div>
+
+  <!-- BOOKMARKS -->
+  <div class="view" id="view-bookmarks">
+    <div class="section-head"><h2>Your bookmarks</h2><span class="count" id="bmCount"></span></div>
+    <div id="bmGrid" class="source-grid"></div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="view" id="view-notes">
+    <div class="section-head"><h2>Research notes</h2><span class="count" id="noteCount"></span></div>
+    <div class="notes-layout">
+      <div class="note-composer">
+        <input id="noteTitle" placeholder="Note title">
+        <textarea id="noteBody" placeholder="Write your notes here…"></textarea>
+        <div class="hint">Saved to this device. Plain text for now — attachments and a rich editor need the same backend as notifications.</div>
+        <button class="note-save" onclick="saveNote()">Save note</button>
+      </div>
+      <div id="notesGrid"></div>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">ASHH — THE INFORMATION · Built for research, not headlines · Prioritises primary sources</div>
+<div class="toast" id="toast"></div>
+
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
